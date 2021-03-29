@@ -14,7 +14,7 @@ def new(
     cmd_create_repo = f'curl -i -H "Authorization: token {pwd}"'
     cmd_create_repo += " -d '{"
     cmd_create_repo += f'"name": "{repo}",'
-    # cmd_create_repo += '"auto_init": true,'
+    cmd_create_repo += '"auto_init": true,'
     cmd_create_repo += '"private": true'
     cmd_create_repo += f"}}' https://api.github.com/user/repos"
             
