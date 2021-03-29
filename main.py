@@ -20,7 +20,27 @@ def new(
     for cmd in cmds:
         console.print(cmd)
         check_output(cmd, shell=True, cwd=Path.cwd())
-    
+
+# - - - -  - - - -  - - - -  - - - -  - - - -  - - - - 
+@app.command()
+def add(
+    comment: str = typer.Option('upd', prompt="Comment: ")
+    ):
+
+    cmds = []
+    cmds.append("git add .")
+    cmds.append(f'git commit -m "{comment}" ')
+    cmds.append("git push")
+
+    for cmd in cmds:
+        typer.echo(cmd)
+        try:
+            check_output(cmd, shell=True, cwd="./") #, cwd=folder)
+        except:
+            console.print('-'*30, '\n\n   ==>> Error\n\n','-'*30)
+
+    console.print('*** END ***')
+
 # - - - - - - - - - - - - - - - - - - - - - - - - - - -
 if __name__ == "__main__":
     app()
